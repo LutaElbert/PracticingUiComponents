@@ -1,4 +1,4 @@
-package com.example.applyinguicomponents.presentation.sharedcomponents
+package com.example.applyinguicomponents.presentation.util.sharedcomponents
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

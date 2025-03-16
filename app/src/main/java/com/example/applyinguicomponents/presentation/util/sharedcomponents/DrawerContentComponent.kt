@@ -1,4 +1,4 @@
-package com.example.applyinguicomponents.presentation.sharedcomponents
+package com.example.applyinguicomponents.presentation.util.sharedcomponents
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,20 +18,23 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.applyinguicomponents.presentation.navigation.MainScreens
-import com.example.applyinguicomponents.util.extension.toCapitalizeString
+import com.example.applyinguicomponents.presentation.util.navigation.MainScreens
 
 @Composable
-fun DrawerContent(selectedItem: DrawerItem?, onClick: () -> Unit) {
+fun DrawerContent(onClick: (String) -> Unit) {
+    val selectedItem by rememberSaveable { mutableStateOf<DrawerItem?>(null) }
     val drawerItems = listOf(
-        DrawerItem(MainScreens.HOME.name.toCapitalizeString(), Icons.Default.Home),
-        DrawerItem(MainScreens.PROFILE.name.toCapitalizeString(), Icons.Default.Person),
-        DrawerItem(MainScreens.NOTIFICATIONS.name.toCapitalizeString(), Icons.Default.Notifications),
-        DrawerItem(MainScreens.SETTINGS.name.toCapitalizeString(), Icons.Default.Settings),
-        DrawerItem(MainScreens.HELP.name.toCapitalizeString(), Icons.AutoMirrored.Filled.Help),
-        DrawerItem(MainScreens.LOGOUT.name.toCapitalizeString(), Icons.AutoMirrored.Filled.Logout),
+        DrawerItem(MainScreens.HOME.capitalized(), Icons.Default.Home),
+        DrawerItem(MainScreens.PROFILE.capitalized(), Icons.Default.Person),
+        DrawerItem(MainScreens.NOTIFICATIONS.capitalized(), Icons.Default.Notifications),
+        DrawerItem(MainScreens.SETTINGS.capitalized(), Icons.Default.Settings),
+        DrawerItem(MainScreens.HELP.capitalized(), Icons.AutoMirrored.Filled.Help),
+        DrawerItem(MainScreens.LOGOUT.capitalized(), Icons.AutoMirrored.Filled.Logout),
     )
 
     ModalDrawerSheet {
@@ -61,7 +64,7 @@ fun DrawerContent(selectedItem: DrawerItem?, onClick: () -> Unit) {
                             }
                         }
                     },
-                    onClick = { onClick.invoke() }
+                    onClick = { onClick.invoke(item.name) }
                 )
             }
         }

@@ -1,4 +1,4 @@
-package com.example.applyinguicomponents.presentation.sharedcomponents
+package com.example.applyinguicomponents.presentation.util.sharedcomponents
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -17,16 +17,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.example.applyinguicomponents.presentation.navigation.MainScreens
-import com.example.applyinguicomponents.util.extension.toCapitalizeString
+import com.example.applyinguicomponents.presentation.util.navigation.MainScreens
 
 @Composable
 fun BottomAppBarComponent(onClick: (String) -> Unit) {
     val drawerItems = listOf(
-        DrawerItem(MainScreens.HOME.name.toCapitalizeString(), Icons.Default.Home),
-        DrawerItem(MainScreens.CALENDAR.name.toCapitalizeString(), Icons.Default.CalendarMonth),
-        DrawerItem(MainScreens.NOTIFICATIONS.name.toCapitalizeString(), Icons.Default.Notifications),
-        DrawerItem(MainScreens.PROFILE.name.toCapitalizeString(), Icons.Default.Person),
+        DrawerItem(MainScreens.HOME.capitalized(), Icons.Default.Home),
+        DrawerItem(MainScreens.CALENDAR.capitalized(), Icons.Default.CalendarMonth),
+        DrawerItem(MainScreens.NOTIFICATIONS.capitalized(), Icons.Default.Notifications),
+        DrawerItem(MainScreens.PROFILE.capitalized(), Icons.Default.Person),
     )
 
     var selectedItem by rememberSaveable { mutableStateOf(false) }
@@ -42,7 +41,7 @@ fun BottomAppBarComponent(onClick: (String) -> Unit) {
                 icon = {
                     BadgedBox(
                         badge = {
-                            if (item.name == "Notifications")
+                            if (item.name == MainScreens.NOTIFICATIONS.capitalized())
                                 Badge {
                                     Text("10", style = MaterialTheme.typography.titleSmall)
                                 }

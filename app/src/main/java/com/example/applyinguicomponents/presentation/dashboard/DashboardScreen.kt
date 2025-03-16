@@ -1,4 +1,4 @@
-package com.example.applyinguicomponents.presentation
+package com.example.applyinguicomponents.presentation.dashboard
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
@@ -8,11 +8,10 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun DashboardScreen(
-    modifier: Modifier,
     onClick: () -> Unit
 ) {
-    Column(modifier = modifier) {
-        Text("qweqwe")
+    Column {
+        Text("Dashboard Screen")
 
         Button(onClick = {
             onClick.invoke()

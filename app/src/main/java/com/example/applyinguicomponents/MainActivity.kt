@@ -6,9 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.applyinguicomponents.presentation.DashboardScreen
-import com.example.applyinguicomponents.presentation.navigation.MainNavHost
-import com.example.applyinguicomponents.presentation.sharedcomponents.ScaffoldComponents
+import com.example.applyinguicomponents.presentation.util.navigation.MainNavHost
+import com.example.applyinguicomponents.presentation.util.sharedcomponents.ScaffoldComponents
 import com.example.applyinguicomponents.ui.theme.ApplyingUiComponentsTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,8 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ApplyingUiComponentsTheme {
-                ScaffoldComponents {
-                    MainNavHost(it)
+                ScaffoldComponents { paddingValues, navController ->
+                    MainNavHost(paddingValues, navController)
                 }
             }
         }
